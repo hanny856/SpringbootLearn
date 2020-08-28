@@ -27,7 +27,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.github.node-gradle.node'
 apply plugin: 'application'
 
-mainClassName = 'boot.test.board.HelloWorldCtr'
+mainClassName = 'boot.test.board.BootBoardApplication'
 group = 'boot.test.board'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'

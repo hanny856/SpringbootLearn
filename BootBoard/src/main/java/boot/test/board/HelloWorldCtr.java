@@ -1,9 +1,12 @@
 package boot.test.board;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,22 +17,24 @@ import boot.test.repository.DeptRepository;
 public class HelloWorldCtr {
 	@Autowired
 	private DeptRepository deptDao;
-	@RequestMapping("/")
+	@RequestMapping("/board")
 	public String hello() {
 		return "hello World";
 	}
 	
-	@RequestMapping("/add")
+	@RequestMapping("/board/add")
 	public Dept addList(Dept dept){
 		Dept insertDept = deptDao.save(dept);
 		return insertDept;
 	}
-	@RequestMapping("/list")
-	public List<Dept> list(){
+	@GetMapping("/board/list")
+	public HashMap<String, List<Dept>> list(){
+		HashMap<String, List<Dept>> result = new HashMap<String, List<Dept>>();
 		List<Dept> deptList = deptDao.findAll();
-		return deptList;
+		result.put("message", deptList);
+		return result;
 	}
-	@RequestMapping("/del")
+	@RequestMapping("/board/del")
 	public List<Dept> delList(int deptno) {
 		deptDao.deleteById(deptno);
 		List<Dept> deptList = deptDao.findAll(); 
