@@ -1,8 +1,70 @@
+buildscript {
+	ext{
+		springBootVersion = '2.3.3.RELEASE'
+		mooworkVersion = '1.3.1'
+	}
+	repositories{
+		mavenLocal()
+		mavenCentral()
+		maven{ url "https://plugins.gradle.org/m2/"}
+	}
+	dependencies{
+		classpath("com.moowork.gradle:gradle-node-plugin:${mooworkVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.3.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 }
+def frontEnd = "$projectDir/front-react"
+
+configure(frontEnd){
+	apply plugin: 'com.moowork.node'
+	node{
+		version = '12.18.3'
+		yarnVersion = '1.22.4'
+		download = true
+		distBaseUrl= 'https://nodejs.org/dist'
+		workDir = file("${project.rootDir}/nodejs")
+		yarnWorkDir = file("${project.rootDir}/yarn")		
+	}
+	task yarnInstallProduction(type: YarnTask){
+		args = ['install']
+	}
+	task nodeModuleInstall{
+		doLast{
+			nodeSetup.execute()
+			yarnSetup.excute()
+			yarnInstallProduction.execute()
+		}
+	}
+}
+
+
+node{
+	nodeModulesDir = file("${rootDir}/front-react/")
+}
+task yarnBuild(type: YarnTask){
+	args = ['run', "build"]
+}
+task copyDistToStatic(type: Copy){
+	from("${rootDir}/front-react/build/")
+	into("${project.projectDir}/src/main/resources/static/")
+	includeEmptyDirs = true
+}
+
+task frontEndBuild{
+	doLast{
+		nodeModuleInstall.excute()
+		yarnBuild.execute()
+		copyDistToStatic.execute()
+	}
+}
+
 
 group = 'boot.test.board'
 version = '0.0.1-SNAPSHOT'

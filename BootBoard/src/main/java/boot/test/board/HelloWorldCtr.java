@@ -12,10 +12,8 @@ import boot.test.repository.DeptRepository;
 
 @RestController
 public class HelloWorldCtr {
-	
 	@Autowired
 	private DeptRepository deptDao;
-	
 	@RequestMapping("/")
 	public String hello() {
 		return "hello World";
