@@ -14,7 +14,7 @@ import boot.test.domain.Dept;
 import boot.test.repository.DeptRepository;
 
 @RestController
-public class HelloWorldCtr {
+public class BoardCtr {
 	@Autowired
 	private DeptRepository deptDao;
 	@RequestMapping("/board")

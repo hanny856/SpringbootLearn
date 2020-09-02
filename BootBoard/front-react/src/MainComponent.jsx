@@ -5,7 +5,8 @@ class MainComponent extends Component {
     constructor(props){
         super(props)
         this.state = {
-            message: ""
+            message: "",
+            sourceList:[]
         }
     }
 
@@ -18,7 +19,8 @@ class MainComponent extends Component {
             .then(res=>{
                 console.log(res);
                 this.setState({
-                    message: res.data.message
+                    message: res.data.message,
+                    sourceList: res.data.message
                 })
             })
             .catch(res => console.log(res))
