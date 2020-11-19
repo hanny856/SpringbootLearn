@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import axios from "axios";
+import DeptList from './DeptList';
+import DeptInfo from './DeptInfo';
 
 class MainComponent extends Component {
-    deptno=40;
     constructor(props){
         super(props)
         this.state = {
@@ -40,23 +41,11 @@ class MainComponent extends Component {
     }
 
     render(){
-        const { sourceList } = this.state;
-        return(
-            <div>
-                <form onCreate={this.handleCreate}>
-                    <input
-                    placeholder="부서이름"
-                    value={this.state.dname}
-                    />
-                    <input
-                    placeholder="지역"
-                    value={this.state.loc}
-                    />
-                </form>
-                {JSON.stringify(sourceList)}
-            </div>
-            
-        )
+       return(
+           <div>
+               <DeptList data = {this.state.sourceList} />
+           </div>
+       );
     }
 
 }
