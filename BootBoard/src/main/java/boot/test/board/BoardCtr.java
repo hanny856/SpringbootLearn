@@ -34,7 +34,6 @@ public class BoardCtr {
 		result.put("message", deptList);
 		return result;
 	}
-	@CrossOrigin(origins="*", allowedHeaders = "*", methods = RequestMethod.DELETE)
 	@RequestMapping("/board/del")
 	public List<Dept> delList(int deptno) {
 		deptDao.deleteById(deptno);
