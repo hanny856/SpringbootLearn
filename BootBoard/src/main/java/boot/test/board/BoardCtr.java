@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import boot.test.domain.Dept;
@@ -32,6 +34,7 @@ public class BoardCtr {
 		result.put("message", deptList);
 		return result;
 	}
+	@CrossOrigin(origins="*", allowedHeaders = "*", methods = RequestMethod.DELETE)
 	@RequestMapping("/board/del")
 	public List<Dept> delList(int deptno) {
 		deptDao.deleteById(deptno);
