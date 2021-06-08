@@ -22,12 +22,9 @@ class MainComponent extends Component {
         this.getApi();
     }
     addApi=(data)=>{
-        axios.add("http://localhost:8090/board/add", {
-            params:{
-                deptno: data,
-                dname:data,
-                loc:data
-            }
+        alert(JSON.stringify(data));
+        axios.post("http://localhost:8090/board/add", data,{
+            headers : {"Content-Type": 'application/json'}
         })
             .then(res=>{
                 this.setState({

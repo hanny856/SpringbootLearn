@@ -3,6 +3,7 @@ import DeptInfo from './DeptInfo';
 import SearchForm from './SearchForm';
 import './CSS/Dashboard.css';
 import DeptAdd from './DeptAdd';
+
 class DeptList extends Component {
     delApi = (data) =>{
         this.props.delApi(data);
@@ -16,11 +17,11 @@ class DeptList extends Component {
     render(){
         const { data } = this.props;
         const list = data.map(
-            dept => (<DeptInfo key={dept.deptno} dept={dept} delApi = {this.delApi} addApi={this.addApi}/>)
+            dept => (<DeptInfo key={dept.deptno} dept={dept} delApi = {this.delApi} />)
         ); 
         return(
             <div>
-                <DeptAdd />
+                <DeptAdd addApi={this.addApi}/>
                 {list}
             </div>
         );
