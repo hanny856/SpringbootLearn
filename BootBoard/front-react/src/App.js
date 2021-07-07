@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-import TopMenuComponent from "./TopMenuComponent"
+import TopMenuComponent from "./component/common/TopMenuComponent"
 
 
 function App() {

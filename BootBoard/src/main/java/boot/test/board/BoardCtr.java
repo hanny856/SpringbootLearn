@@ -23,9 +23,10 @@ public class BoardCtr {
 	}
 	
 	@RequestMapping("/board/add")
-	public Dept addList(Dept dept){
-		Dept insertDept = deptDao.save(dept);
-		return insertDept;
+	public List<Dept> addList(Dept dept){
+		deptDao.save(dept);
+		List<Dept> deptList = deptDao.findAll(); 
+		return deptList;
 	}
 	@GetMapping("/board/list")
 	public HashMap<String, List<Dept>> list(){

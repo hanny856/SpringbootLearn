@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import {Navbar} from "react-bootstrap";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import MainComponent from './MainComponent'
-import DashboardComponent from './DashboardComponent'
+import MainComponent from '../dept/MainComponent'
+import DashboardComponent from '../dashboard/DashboardComponent'
 
 class TopMenuComponent extends Component{
     render(){

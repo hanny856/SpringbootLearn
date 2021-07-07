@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import './CSS/Dashboard.css';
+import '../../CSS/Dashboard.css';
 
 class DeptInfo extends Component {
-
     static defaultProps={
         dept: {
             deptno: 0,

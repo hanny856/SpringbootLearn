@@ -22,13 +22,10 @@ class MainComponent extends Component {
         this.getApi();
     }
     addApi=(data)=>{
-        axios.add("http://localhost:8090/board/add", {
-            params:{
-                deptno: data,
-                dname:data,
-                loc:data
-            }
-        })
+        axios.post("http://localhost:8090/board/add", null, { params: {
+            dname : data.dname,
+            loc:data.loc
+        }} )
             .then(res=>{
                 this.setState({
                     sourceList: res.data
